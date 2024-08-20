@@ -1,6 +1,11 @@
+## 调整内容
+
+- 图标更换为[solar](https://icon-sets.iconify.design/solar/)，移除 fontawesome。未全量获取所有 solar 图标，有需要的可以在 icon.min.css 里添加
+- 适配豆瓣页面
+
 <p align="center">Butterfly 主题 Halo 2.0</p>
 
-> `Butterfly` 是Hexo社区[hexo-theme-Butterfly](https://github.com/jerryc127) 此次移植`pug`模板引擎调整为 `thymeleaf`，
+> `Butterfly` 是 Hexo 社区[hexo-theme-Butterfly](https://github.com/jerryc127) 此次移植`pug`模板引擎调整为 `thymeleaf`，
 > 希望大家喜欢 ❤️ ！同时也要在此感谢原作者 [Jerry](https://github.com/jerryc127)
 > 欢迎大家加入 [halo-theme-Butterfly 交流群：916571927](https://jq.qq.com/?_wv=1027&k=LfbGKBVG)
 
@@ -39,10 +44,10 @@
 - [x] 页面顶部自定义图
 - [x] 文章列表（列表/平铺）
 - [x] 侧边栏 全局/单独控制
-- [x] 分类/标签页UI优化
+- [x] 分类/标签页 UI 优化
 - [x] 社交账号配置
 - [x] 代码高亮 + 行号 + 复制 + 折叠
-- [x] 随机图片api配置
+- [x] 随机图片 api 配置
 - [x] 统计页面 总访问量
 - [x] 站点运行时间
 - [x] 主题模式（深色/浅色）
@@ -81,10 +86,10 @@ Halo 使用 GPL-v3.0 协议开源，请遵守开源协议。
 
 ![赞助](https://cdn.jsdelivr.net/npm/halo-theme-butterfly/docs/sponsor.png)
 
-| 时间         | 小伙伴  | 平台     | 金额    | 备注  |
-|:-----------|:-----|:-------|:------|:----|
-| 2022-07-25 | 咕咕鸽  | QQ     | 50    | 🍹  |
-| 2023-03-14 | Cary | Alipay | 10    | 🍹  |
-| 2023-03-14 | *哦   | Wechat | 50    | 🍹  |
-| 2023-03-22 | 心底.  | Wechat | 28.88 | 🍹  |
-| 2023-03-22 | xx鹏  | Alipay | 3.33  | 🍹  |
+| 时间       | 小伙伴 | 平台   | 金额  | 备注 |
+| :--------- | :----- | :----- | :---- | :--- |
+| 2022-07-25 | 咕咕鸽 | QQ     | 50    | 🍹   |
+| 2023-03-14 | Cary   | Alipay | 10    | 🍹   |
+| 2023-03-14 | \*哦   | Wechat | 50    | 🍹   |
+| 2023-03-22 | 心底.  | Wechat | 28.88 | 🍹   |
+| 2023-03-22 | xx 鹏  | Alipay | 3.33  | 🍹   |
