@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: layout (
+  page = 'douban',
+  title = ${theme.config.douban.custom_title},
+  head = ~{::head},
+  above = ~{::above},
+  content = ~{::content},
+  js = ~{::js}
+  )}">
+>
+<th:block th:fragment="head">
+  <style th:inline="css"
+    th:with="above_background= ${is_body_bg_http ? '' : 'url(' + theme.config.douban.above_background + ')'}">
+    .above {
+      --above-background:
+      /*[(${above_background})]*/
+      transparent;
+    }
+  </style>
+  <link rel="stylesheet" th:href="@{/plugins/plugin-douban/assets/static/db.min.css}">
+</th:block>
+
+<section
+  th:fragment="above"
+  th:if="${theme.config.douban.enable_above}"
+  class="above relative w-100">
+  <h1 class="absolute above-public-title font-weight-400 margin-0 left-0 right-0 text-center"
+    th:text="${theme.config.douban.custom_title}"></h1>
+</section>
+
+<th:block th:fragment="content">
+  <section class="container card">
+    <div id="category" class="db--container">
+      <nav class="db--nav">
+        <div class="db--navItem JiEun current" data-type="movie">movie</div>
+      </nav>
+      <div class="db--genres"></div>
+      <div class="db--type">
+        <div class="db--typeItem" data-status="mark">想看</div>
+        <div class="db--typeItem" data-status="doing">在看</div>
+        <div class="db--typeItem is-active" data-status="done">看过</div>
+      </div>
+      <div class="db--list db--list__card" data-type="movie">
+      </div>
+      <div class="block-more block-more__centered">
+        <div class="lds-ripple u-hide">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <th:block th:replace="~{modules/public:: aside}"></th:block>
+</th:block>
+
+<th:block th:fragment="js">
+  <script type="text/javascript" th:src="${assets_link+'/js/single.min.js' + theme_version}"></script>
+  <script th:src="@{/plugins/plugin-douban/assets/static/db.min.js}"></script>
+</th:block>
+
+</html>

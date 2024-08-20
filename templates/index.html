@@ -8,17 +8,18 @@
   above = ~{::above},
   content = ~{::content},
   js = ~{::js}
-  )}"
+  )}">
 >
-
 <th:block th:fragment="head"
-          th:with="above_background= ${is_body_bg_http ? '' : 'url(' + theme.config.index.above_background + ')'}">
+  th:with="above_background= ${is_body_bg_http ? '' : 'url(' + theme.config.index.above_background + ')'}">
   <style th:inline="css">
     .above {
-      --above-background: /*[(${above_background})]*/ transparent;
+      --above-background:
+      /*[(${above_background})]*/
+      transparent;
     }
   </style>
-  <link rel="stylesheet" th:href="${assets_link+'/css/index.min.css' + theme_version}">
+  <link rel="stylesheet" th:href="${assets_link+'/css/index.min.css'+theme_version}">
 </th:block>
 
 <section
@@ -33,7 +34,7 @@
     </div>
   </div>
   <div class="above-down-icon absolute text-center bottom-0 left-0 right-0">
-    <i class="fas fa-angle-down"></i>
+    <i class="icon-pack solar--alt-arrow-down-linear icon-large"></i>
   </div>
 </section>
 
@@ -54,4 +55,5 @@
   <script type="text/javascript" th:src="${assets_link +'/plugins/typed/typed.min.js'}"></script>
   <script type="text/javascript" th:src="${assets_link +'/js/index.min.js'+theme_version}"></script>
 </th:block>
+
 </html>
