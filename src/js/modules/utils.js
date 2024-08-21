@@ -99,25 +99,3 @@ export function drawEcharts(theme, tp = 0) {
 
   window.addEventListener("resize", (() => chart.resize()));
 }
-
-/**
- * 放大图片
- * @param selector
- */
-export const useFancyBoxImg = (selector = '.render-html img') => {
-  const dom = $(selector);
-
-  if (!dom.length) return;
-
-  dom.each(function () {
-    const $this = $(this);
-
-    // $this.attr('width', '');
-
-    // $this.attr('height', '');
-
-    $this.wrap($(`<span class="block text-center w-100" data-fancybox="fancyBoxImg" href="${$this.attr("src")}" ></span>`));
-  });
-}
-
-

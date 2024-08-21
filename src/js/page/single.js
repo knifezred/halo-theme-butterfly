@@ -4,8 +4,7 @@
  * @fileName: single
  * @Description: 独立页面
  */
-import {useFancyBoxImg} from "../modules/utils";
-import {useCodeBlock, useRenderHtml, useSwitchCodeTheme} from "../modules/renderHtml";
+import { useCodeBlock, useSwitchCodeTheme } from "../modules/renderHtml";
 
 
 class Single {
@@ -18,9 +17,6 @@ class Single {
 
     // 代码主题
     useSwitchCodeTheme();
-    
-    // 图片放大
-    useFancyBoxImg();
   }
 
 }

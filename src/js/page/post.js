@@ -4,17 +4,13 @@
  * @fileName: post
  * @Description: 文章 代码块
  */
-import {useFancyBoxImg} from '../modules/utils.js'
-import {useRenderHtml} from "../modules/renderHtml";
+import { useRenderHtml } from "../modules/renderHtml";
 
 
 class Post {
   constructor() {
     // 使用渲染 md -> html
     useRenderHtml();
-
-    // 图片放大
-    useFancyBoxImg();
 
     if (PageConfig.post['realNode']['out_date'] > 0) this.outDate();
 

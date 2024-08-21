@@ -50,7 +50,7 @@ export const useCodeBlock = (selector = '.render-html') => {
 
       // 代码块复制
       if (codeConfig['enable_copy']) {
-        customItem.append('<i class="fas fa-paste copy-button code-copy cursor-pointer"></i>');
+        customItem.append('<i class="icon-pack solar--copy-linear  copy-button code-copy cursor-pointer"></i>');
 
         customItem.find('.code-copy').on('click', function (e) {
           const text = pre.children("code[class*='language-']").text();
@@ -72,7 +72,9 @@ export const useCodeBlock = (selector = '.render-html') => {
 
       // 代码块展开
       if (codeConfig['enable_expander']) {
-        customItem.append('<i class="fa-sharp fa-solid fa-caret-down code-expander cursor-pointer"></i>');
+        customItem.append(
+          '<i class="icon-pack solar--alt-arrow-down-bold code-expander cursor-pointer"></i>'
+        );
 
         customItem.find('.code-expander').on('click', function () {
           pre.children('code').toggle();
