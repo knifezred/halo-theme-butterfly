@@ -8,13 +8,13 @@
   .item {
     .cover {
       &.pt-top::before {
-        content: '置顶';
+        content: "置顶";
         position: absolute;
         left: 0;
         background: linear-gradient(135deg, #fd7a64 10%, #fb2d2d 100%);
         color: #fff;
         top: 20px;
-        font-size: .8rem;
+        font-size: 0.8rem;
         z-index: 50;
         padding: 0 7px;
         line-height: 2;
@@ -33,7 +33,7 @@
     .info {
       &-title {
         color: var(--text-obs-color);
-        transition: color .2s;
+        transition: color 0.2s;
 
         &:hover {
           color: var(--link-hover-color);
@@ -43,8 +43,7 @@
       &-wrap {
         margin: 6px 0;
         font-size: 90%;
-        
-        
+
         .wp {
           &.category {
             .lk {
@@ -59,15 +58,11 @@
           }
         }
 
-
         .fk {
           margin: 0 0.2rem 0 0.1rem;
         }
       }
-
     }
-
-
   }
 
   //列表
@@ -96,7 +91,6 @@
       //&:hover::after {
       //  transform: scale3d(2, 1, 1) rotate(60deg) translate3d(0, 180%, 0);
       //}
-
     }
 
     .info {
@@ -106,14 +100,11 @@
         font-size: 1.6rem;
         line-height: 1.4;
       }
-
     }
-
 
     .text {
       line-height: 1.8;
     }
-
   }
 
   //平铺
@@ -139,6 +130,7 @@
 
         &-title {
           font-size: 1.2rem;
+          line-clamp: 1;
           -webkit-line-clamp: 1;
           line-height: 1.2;
         }
@@ -147,7 +139,8 @@
           font-size: 80%;
 
           .category .cys {
-            .lk:not(:first-child), .point:not(:first-child) {
+            .lk:not(:first-child),
+            .point:not(:first-child) {
               display: none;
             }
           }
@@ -158,10 +151,8 @@
         display: none;
       }
     }
-
   }
 }
-
 
 //适配
 &#Butterfly {
@@ -186,15 +177,12 @@
   }
 
   @media (max-width: 1130px) {
-
   }
 
   @media (max-width: 1000px) {
   }
 
   @media (max-width: 992px) {
-
-
   }
 
   @media (max-width: 768px) {
@@ -204,7 +192,6 @@
           height: auto;
           flex-direction: column;
         }
-
 
         .cover {
           width: 100%;
@@ -232,25 +219,22 @@
         }
       }
     }
-
   }
 
   @media (max-width: 650px) {
     .posts {
       &.list {
-
         .text {
+          line-clamp: 1;
           -webkit-line-clamp: 1;
         }
       }
     }
   }
 
-
   @media (max-width: 500px) {
   }
 
   @media (max-width: 375px) {
-
   }
 }

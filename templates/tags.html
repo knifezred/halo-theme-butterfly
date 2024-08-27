@@ -3,7 +3,7 @@
   xmlns:th="https://www.thymeleaf.org"
   th:replace="~{modules/layout :: layout (
   page = 'tags',
-  title = ${theme.config.tags.custom_title},
+  title = ${theme.config.tags.custom_title+ ' | ' + site.title},
   head = ~{::head},
   above = ~{::above},
   content = ~{::content},
@@ -50,7 +50,7 @@
 </th:block>
 
 <th:block th:fragment="js">
-  <script type="text/javascript" th:src="${assets_link+'/plugins/echarts/echarts.min.js'}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/echarts@5.5.1/dist/echarts.min.js"></script>
   <script type="text/javascript" th:src="${assets_link+'/js/tags.min.js' + theme_version}"></script>
 </th:block>
 </html>

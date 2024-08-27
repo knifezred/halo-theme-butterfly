@@ -1,0 +1,213 @@
+.photos-group {
+  margin-bottom: 1rem;
+}
+.photos-group .link {
+  padding: 0 10px;
+  margin: 10px 10px 5px 0;
+  background-color: var(--theme-20-color);
+  -webkit-box-shadow: 0 7px 20px 1px var(--theme-20-color);
+  box-shadow: 0 7px 20px 1px var(--theme-20-color);
+  border-radius: 5px;
+  -webkit-transition: -webkit-box-shadow 0.2s, -webkit-transform 0.2s;
+  transition: box-shadow 0.2s, transform 0.2s, -webkit-box-shadow 0.2s,
+    -webkit-transform 0.2s;
+  color: var(--spec-color);
+}
+.photos-group .link i {
+  font-size: 0.8em;
+}
+.photos-group .link:hover {
+  -webkit-transform: translateY(-5px);
+  transform: translateY(-5px);
+  -webkit-box-shadow: 0 2rem 1rem -1rem var(--theme-50-color);
+  box-shadow: 0 2rem 1rem -1rem var(--theme-50-color);
+  color: var(--theme);
+}
+.photos-group .link span {
+  cursor: var(--cursor-pointer);
+  font-size: 1rem;
+}
+
+.active {
+  color: var(--theme);
+}
+
+.gallery-groups {
+  padding: 1rem 2rem;
+  width: 100%;
+  align-self: flex-start;
+  animation: slide-in 0.6s 0.1s backwards;
+}
+
+:root {
+  --album-text-light: rgba(255, 255, 255, 0.6);
+  --album-text-lighter: rgba(255, 255, 255, 0.9);
+  --album-spacing-s: 8px;
+  --album-spacing-m: 16px;
+  --album-spacing-l: 24px;
+  --album-spacing-xl: 32px;
+  --album-spacing-xxl: 64px;
+}
+
+#album .card-album {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: var(--album-spacing-xxl) 0 0;
+}
+
+#album .card-album .album-content-nocover {
+  width: calc(100% / 3 - 40px);
+}
+
+#album .card-album .card {
+  list-style: none;
+  position: relative;
+  display: flex;
+  width: calc(100% / 3 - 10px);
+}
+
+#album .card-album .card:hover {
+  cursor: pointer;
+}
+
+#album .card_cover {
+  filter: brightness(0.75) saturate(1.2) contrast(0.85);
+  transform-origin: center;
+  transform: scale(1) translateZ(0);
+  transition: filter 0.2s linear, transform 0.2s linear;
+  max-width: 100%;
+  overflow: hidden;
+  height: 500px;
+  width: 100%;
+  object-fit: cover;
+  border-radius: var(--card-border-radius);
+}
+
+#album .card:hover .card_cover {
+  transform: scale(1.05) translateZ(0);
+  filter: brightness(0.9) saturate(1.2) contrast(1);
+}
+
+#album .card-album:hover > .card:not(:hover) .card_cover {
+  filter: brightness(0.5) saturate(0.9) contrast(1.2) blur(20px);
+}
+
+#album .card__content {
+  left: 0;
+  padding: var(--album-spacing-l);
+  position: absolute;
+  top: 0;
+}
+
+#album .card__category {
+  color: var(--album-text-light);
+  font-size: 0.8rem;
+  margin-top: var(--album-spacing-s);
+  text-transform: uppercase;
+}
+
+#album .card__heading {
+  color: var(--album-text-lighter);
+  font-size: 1.5rem;
+  text-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
+  line-height: 1.4;
+  word-spacing: 100vw;
+  margin: 0;
+}
+
+#photo-container .loadings .type-gallery {
+  opacity: 0;
+}
+
+#photo-container .gallery {
+  margin: 0 0 16px;
+  text-align: center;
+}
+
+#photo-container .gallery .fj-gallery {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+}
+
+#photo-container .gallery .fj-gallery .img-alt {
+  display: none;
+}
+
+#photo-container .gallery .fj-gallery.lazyload + button {
+  display: inline-block;
+}
+
+#photo-container .gallery .fj-gallery .gallery-data {
+  opacity: 0;
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
+  filter: alpha(opacity=0);
+  visibility: hidden;
+}
+
+#photo-container .gallery button {
+  display: none;
+  margin-top: 25px;
+  padding: 10px;
+  width: 9em;
+  border-radius: 5px;
+  background: var(--btn-bg);
+  color: var(--btn-color);
+  font-weight: 700;
+  font-size: 1.1em;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  -o-transition: all 0.3s;
+  -ms-transition: all 0.3s;
+  transition: all 0.3s;
+}
+
+#photo-container .gallery button > * {
+  -webkit-transition: all 0.4s;
+  -moz-transition: all 0.4s;
+  -o-transition: all 0.4s;
+  -ms-transition: all 0.4s;
+  transition: all 0.4s;
+}
+
+#photo-container .gallery button i {
+  opacity: 1;
+  -ms-filter: none;
+  filter: none;
+  font-size: 1.1rem;
+}
+
+#photo-container .gallery button:hover {
+  background: var(--btn-hover-color);
+}
+
+#photo-container .gallery button:hover i {
+  margin-left: 2px;
+}
+
+#photo-container .tag-address {
+  display: flex;
+  position: relative;
+  padding-left: 12px;
+  bottom: 2rem;
+  border-radius: 0px 0px 8px 8px;
+  background: var(--theme-20-color);
+  color: #fff;
+  font-size: 1rem;
+  transition: 0.3s;
+  z-index: 1;
+  user-select: none;
+}
+
+img {
+  border-style: none;
+  border-radius: 8px;
+  max-width: 100%;
+  transition: all 0.2s ease 0s;
+  -webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -ms-user-drag: none;
+}

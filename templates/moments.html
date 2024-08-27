@@ -3,7 +3,7 @@
   xmlns:th="https://www.thymeleaf.org"
   th:replace="~{modules/layout :: layout (
   page = 'moments',
-  title = ${theme.config.moments.custom_title},
+  title = ${theme.config.moments.custom_title+ ' | ' + site.title},
   head = ~{::head},
   above = ~{::above},
   content = ~{::content},
@@ -14,9 +14,7 @@
   <style th:inline="css"
     th:with="above_background= ${is_body_bg_http ? '' : 'url(' + theme.config.moments.above_background + ')'}">
     .above {
-      --above-background:
-      /*[(${above_background})]*/
-      transparent;
+      --above-background: /*[(${above_background})]*/ transparent;
     }
   </style>
   <link rel="stylesheet" th:href="${assets_link+'/css/moments.min.css' + theme_version}">
@@ -33,78 +31,69 @@
 
 <th:block th:fragment="content">
   <section class="container card" th:with="noData = ${not #lists.isEmpty(moments)}">
-    <th:block th:if="${noData}">
-      <div class="tag-cloud-list is-center">
-        <a th:href="@{/moments}"><span class="moments-punctuation">全部</span></a>
-        <a th:each="tag : ${moments}" th:href="@{|?tag=${tag.name}|}" style="background: var(--heo-secondbg)">
-          <span class="moments-punctuation" th:text="|${tag.name}|"></span>
-        </a>
-      </div>
-      <div style="padding: 20px;" th:each="moment : ${moments.items}"
-        th:with="content=${moment.spec.content}">
-        <div class="moments-header">
-          <div>
-            <img class="moments-avatar" th:src="${moment.owner.avatar}" />
-          </div>
-          <div>
-            <span class="display-name" th:text="${moment.owner.displayName}"></span>
-            <time class="release-time"
-              th:text="${#dates.format(moment.spec.releaseTime,'yyyy-MM-dd')}"></time>
-          </div>
-        </div>
-        <div class="moments-content">
-          <div class="datacont" th:if="${not #strings.isEmpty(content.html)}"
-            th:utext="${content.html}">
-          </div>
-          <th:block th:if="${not #lists.isEmpty(content.medium)}">
-            <div class="moments-img"
-              th:if="${#strings.contains(content.medium,'PHOTO')}">
-              <img th:each="momentItem : ${content.medium}"
-                th:if="${momentItem.type.name == 'PHOTO'}"
-                th:src="${momentItem.url}" style="max-width: 33%;min-width: 28%;padding: 0px 2px;"
-                title="瞬间配图">
-              <div class="moments-content-noimg"></div>
-              <div class="moments-content-noimg"></div>
-              <div class="moments-content-noimg"></div>
+    <div class="note-bar">
+      <ul class="moments-list flex flex-direction-row flex-wrap-wrap flex-justify-content-start">
+        <li class="moments-list-item relative">
+          <a href="/moments" th:class="${#lists.isEmpty(param.tag) ? 'active' : ''}">全部</a>
+        </li>
+        <li class="moments-list-item relative" th:each="tag,iStat : ${tags}"
+          th:data-postCount="${category.postCount}"
+          th:data-displayName="${category.spec.displayName}">
+          <a th:href="|/moments?tag=${tag.name}|"
+            th:class="${#lists.contains(param.tag, tag.name) ? 'active' : ''}"
+            th:text="${tag.name}"></a>
+        </li>
+      </ul>
+    </div>
+    <div class="note-page">
+      <ul>
+        <li th:each="moment,iStat : ${moments}">
+          <div class="top">
+            <div class="left">
+              <img th:src="${moment.owner.avatar}">
             </div>
-            <div th:each="momentItem : ${content.medium}" class="moments-video"
-              th:if="${momentItem.type.name == 'VIDEO'}">
-              <video th:src="${momentItem.url}"></video>
-            </div>
-          </th:block>
-          <div class="moments-bottom">
-            <div class="bottom">
-              <div class="moments-info">
-                <a style="float: left;" th:onclick="handleUpvote([[${moment.metadata.name}]])">
-                  <i class="icon-pack solar--heart-bold" class="upvote grayscale"
-                    th:upvote-moment-icon-name="${moment.metadata.name}"></i>
-                  <span th:text="${moment.stats.upvote}" th:data-upvote-moment-name="${moment.metadata.name}"></span>
-                </a>
-                <a style="float: right;" th:onclick="showMomentComment([[${moment.metadata.name}]])">
-                  <i class="icon-pack solar--chat-line-linear"></i>
-                  <span th:text="${moment.stats.approvedComment}"></span>
-                </a>
-              </div>
-              <div class="post-comment" th:if="${pluginFinder.available('PluginCommentWidget')}">
-                <halo:comment colorScheme="window.dataTheme" group="content.halo.run" kind="Post"
-                  th:attr="name=${moment.metadata.name}" />
+            <div class="right">
+              <div class="note-author" th:text="${moment.owner.displayName}"></div>
+              <div class="note-date"
+                th:text="${#dates.format(moment.spec.releaseTime,'yyyy年MM月dd日 HH:mm')}">
               </div>
             </div>
           </div>
-        </div>
-      </div>
-      <div th:if="${moments.hasPrevious() || moments.hasNext()}">
-        <a th:href="@{${moments.prevUrl}}">
-          <span>上一页</span>
-        </a>
-        <span th:text="${moments.page}"></span>
-        <a th:href="@{${moments.nextUrl}}">
-          <span>下一页</span>
-        </a>
-      </div>
-    </th:block>
-
-    <th:block th:unless="${noData}" th:insert="~{modules/public:: emptyData('暂无标签~',false)}"></th:block>
+          <div class="center" th:with="content=${moment.spec.content}">
+            <div class="notes-content" th:utext="${content.html}"></div>
+            <th:block th:if="${not #lists.isEmpty(content.medium)}">
+              <div th:class="|moment-media medium-${content.medium.size}|">
+                <th:block th:each="media : ${content.medium}">
+                  <div class="moment-media-item">
+                    <img th:if="${#strings.equals(media.type,'PHOTO')}"
+                      class="rounded-lg " th:src="${media.url}" loading="lazy">
+                    <video th:if="${#strings.equals(media.type,'VIDEO')}"
+                      th:src="${media.url}" width="100%" height="auto"
+                      controls="true"></video>
+                  </div>
+                </th:block>
+              </div>
+            </th:block>
+          </div>
+          <div class="bottom">
+            <div class="moments-info">
+              <a th:onclick="handleUpvote([[${moment.metadata.name}]])">
+                <i class="icon-pack solar--heart-bold" th:upvote-moment-icon-name="${moment.metadata.name}"></i>
+                <span th:text="${moment.stats.upvote}" th:data-upvote-moment-name="${moment.metadata.name}"></span>
+              </a>
+              <a style="float: right;" th:onclick="showMomentComment([[${moment.metadata.name}]])">
+                <i class="icon-pack solar--chat-line-linear"></i>
+                <span th:text="${moment.stats.approvedComment}"></span>
+              </a>
+            </div>
+            <div class="post-comment" th:if="${pluginFinder.available('PluginCommentWidget')}">
+              <halo:comment group="moment.halo.run" kind="Moment"
+                th:attr="name=${moment.metadata.name}" />
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
   </section>
 
   <th:block th:replace="~{modules/public:: aside}"></th:block>
@@ -113,6 +102,67 @@
 <th:block th:fragment="js">
   <script type="text/javascript" th:src="${assets_link+'/plugins/echarts/echarts.min.js'}"></script>
   <script type="text/javascript" th:src="${assets_link+'/js/moments.min.js' + theme_version}"></script>
+  <script>
+    var upVotedNames = []
+    upVotedNames = JSON.parse(localStorage.getItem(`omgx.upvoted.moment.names`) || '[]')
+    upVotedNames.forEach(name => {
+      setLikeActive(name)
+    });
+
+    function setLikeActive(name) {
+      const o = document.querySelector(
+        '[upvote-moment-icon-name="' + name + '"]'
+      )
+      if (!o) return
+      o.setAttribute('style', 'color: #ff4757;')
+    }
+
+    function upvoted(name) {
+      return upVotedNames.includes(name)
+    }
+    function handleUpvote(name) {
+      if (upvoted(name)) return
+      fetch('/apis/api.halo.run/v1alpha1/trackers/upvote', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ group: "moment.halo.run", plural: 'moments', name }),
+      }).then(response => response)
+        .then(data => {
+          upVotedNames = [...upVotedNames, name];
+          localStorage.setItem(
+            `omgx.upvoted.moment.names`,
+            JSON.stringify(upVotedNames)
+          );
+          setLikeActive(name)
+          const o = document.querySelector(
+            '[data-upvote-moment-name="' + name + '"]'
+          )
+          if (!o) return
+          const s = parseInt(o.textContent || '0')
+          o.textContent = s + 1 + ''
+        })
+        .catch((error) => console.error('Error:', error));
+    }
+    function showMomentComment(momentName) {
+      const elements = document.querySelectorAll('[id^="comment-moment-halo-run-Moment-"]');
+      // 遍历这些元素
+      elements.forEach(function (element) {
+        // 对每个元素执行操作
+        if (element.id == 'comment-moment-halo-run-Moment-' + momentName) {
+          if (element.getAttribute('style').includes("block")) {
+            element.setAttribute("style", "display:none;");
+          } else {
+            element.setAttribute("style", "display:block;padding: 20px;");
+          }
+        } else {
+          element.setAttribute("style", "display:none;");
+        }
+      });
+    }
+    showMomentComment('')
+  </script>
 </th:block>
 
 </html>

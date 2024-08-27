@@ -5,19 +5,18 @@
  * @Description: 渲染html 模块
  */
 html {
-  --rl-code-bg-color: rgba(27, 31, 35, .05);
+  --rl-code-bg-color: rgba(27, 31, 35, 0.05);
   --rl-code-color: #ed2929;
-  --rl-code-bar-shadow: 0 5px 10px 0 rgba(144, 164, 174, .4);
+  --rl-code-bar-shadow: 0 5px 10px 0 rgba(144, 164, 174, 0.4);
 
   --rl-blockquote-bg-color: rgba(73, 177, 245, 0.1);
   --rl-blockquote-font-color: #6a737d;
 
   --rl-table-t-color: #e3e3e3;
 
-  --rl-h-color: #1f2d3d;
+  --rl-h-color: var(--theme);
 
-
-  &[data-theme=dark] {
+  &[data-theme="dark"] {
     --rl-code-bg-color: #2c2c2c;
     --rl-code-bar-shadow: 0 0 6px 2px rgba(39, 39, 39, 1);
 
@@ -27,18 +26,20 @@ html {
     --rl-table-t-color: rgba(255, 255, 255, 0.7);
 
     --rl-h-color: rgba(255, 255, 255, 0.9);
-
   }
-
 }
-
 
 .render-html {
   word-break: break-word;
   overflow-wrap: break-word;
 
   &.enable_h_title {
-    h1, h2, h3, h4, h5, h6 {
+    h1,
+    h2,
+    h3,
+    h4,
+    h5,
+    h6 {
       &::before {
         display: none;
       }
@@ -65,7 +66,7 @@ html {
       width: 0;
       height: 1px;
       background: var(--theme);
-      transition: width .35s;
+      transition: width 0.35s;
     }
 
     &:hover {
@@ -75,24 +76,15 @@ html {
     }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     transition: font-size 0.3s;
     color: var(--rl-h-color);
     margin: 18px 0 12px;
-
-
-    &::before {
-      font-family: "Font Awesome 6 Pro", serif;
-      font-weight: 900;
-      -webkit-font-smoothing: antialiased;
-      display: var(--fa-display, inline-block);
-      font-style: normal;
-      font-variant: normal;
-      line-height: 1;
-      text-rendering: auto;
-      margin-right: 5px;
-      color: var(--theme);
-    }
   }
 
   h1 {
@@ -100,9 +92,8 @@ html {
     //margin: 28px 0 20px;
 
     &::before {
-      content: "\f313";
+      content: "▶ ";
     }
-
   }
 
   h2 {
@@ -110,7 +101,7 @@ html {
     //margin: 25px 0 18px;
 
     &::before {
-      content: "\f314";
+      content: "▶ ";
     }
   }
 
@@ -119,7 +110,7 @@ html {
     //margin: 20px 0 16px;
 
     &::before {
-      content: "\f315";
+      content: "▶ ";
     }
   }
 
@@ -128,7 +119,7 @@ html {
     //margin: 15px 0 14px;
 
     &::before {
-      content: "\f86a";
+      content: "▶ ";
     }
   }
 
@@ -137,7 +128,7 @@ html {
     //margin: 12px 0 12px;
 
     &::before {
-      content: "\e412";
+      content: "▶ ";
     }
   }
 
@@ -146,16 +137,18 @@ html {
     //margin: 8px 0 10px;
 
     &::before {
-      content: "\e413";
+      content: "▶ ";
     }
   }
 
-  ul, ol {
+  ul,
+  ol {
     margin-bottom: 18px;
     padding-left: 36px;
   }
 
-  ul li, ol li {
+  ul li,
+  ol li {
     line-height: 38px;
   }
 
@@ -165,7 +158,7 @@ html {
     &::marker {
       color: var(--theme);
       font-weight: 600;
-      font-size: 1.5em;
+      font-size: 1rem;
     }
   }
 
@@ -173,13 +166,17 @@ html {
     list-style: decimal;
   }
 
-  ul[data-type*=taskList], ul[class*=task-list] {
+  ul[data-type*="taskList"],
+  ul[class*="task-list"] {
     li {
       margin-left: -16px;
       list-style: none;
     }
 
-    > label, input, div, p {
+    > label,
+    input,
+    div,
+    p {
       display: inline-block;
     }
 
@@ -232,18 +229,15 @@ html {
           border-width: 0 0.15em 0.15em 0;
           transform: rotate(45deg);
         }
-
-
       }
     }
-
-
   }
 
   code:not([class]) {
     user-select: all;
     font-size: var(--font-size);
-    font-family: "Butterfly Font", "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
+    font-family: "Butterfly Font", "Helvetica Neue", Helvetica, "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, "sans-serif";
     background-color: var(--rl-code-bg-color);
     color: var(--rl-code-color);
     display: inline-block;
@@ -284,7 +278,7 @@ html {
     margin: 5px 0;
 
     tr > th {
-      background-color: rgba(153, 169, 191, .1);
+      background-color: rgba(153, 169, 191, 0.1);
       padding: 6px 12px;
       border: 1px solid var(--rl-table-t-color);
       vertical-align: middle;
@@ -297,11 +291,11 @@ html {
       vertical-align: middle;
       text-align: left;
 
-      &, > code:not([class]) {
+      &,
+      > code:not([class]) {
         white-space: nowrap;
       }
     }
-
   }
 
   .code-toolbar {
@@ -361,7 +355,7 @@ html {
           }
 
           &.code-copy {
-            font-size: .9rem;
+            font-size: 0.9rem;
           }
         }
       }
@@ -383,7 +377,7 @@ html {
       }
     }
 
-    pre[class*=language-] {
+    pre[class*="language-"] {
       //font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
       position: relative;
       margin: 0;
@@ -401,7 +395,7 @@ html {
         padding-top: 12px;
       }
 
-      code[class*=language-] {
+      code[class*="language-"] {
         //font-family: "Fira Code", "Fira Mono", Menlo, Consolas, "DejaVu Sans Mono", monospace;
         display: block;
         margin-bottom: 0;
@@ -416,21 +410,23 @@ html {
           height: 5px;
         }
 
-        .token.string, .style .token.string, .token.entity, .token.operator, .token.url {
+        .token.string,
+        .style .token.string,
+        .token.entity,
+        .token.operator,
+        .token.url {
           background-color: transparent;
         }
       }
 
       &.line-numbers {
-        code[class*=language-] {
+        code[class*="language-"] {
           padding: 10px 20px 10px 50px;
         }
       }
     }
-
   }
 }
-
 
 #Butterfly {
   @media (max-width: 1760px) {
@@ -446,11 +442,9 @@ html {
   }
 
   @media (max-width: 1200px) {
-
   }
 
   @media (max-width: 1130px) {
-
   }
 
   @media (max-width: 1000px) {
@@ -458,14 +452,14 @@ html {
 
   @media (max-width: 992px) {
     .render-html {
-      ul, ol {
+      ul,
+      ol {
         padding-left: 20px;
       }
     }
   }
 
   @media (max-width: 900px) {
-
   }
 
   @media (max-width: 768px) {
@@ -478,19 +472,16 @@ html {
       h2 {
         font-size: 1.3em;
         margin: 18px 0 16px;
-
       }
 
       h3 {
         font-size: 1.2em;
         margin: 16px 0 14px;
-
       }
 
       h4 {
         font-size: 1.1em;
         margin: 14px 0 12px;
-
       }
 
       h5 {
@@ -499,32 +490,26 @@ html {
       }
 
       h6 {
-        font-size: .9em;
+        font-size: 0.9em;
         margin: 5px 0 10px;
       }
-
     }
-
   }
 
   @media (max-width: 770px) {
-
   }
 
   @media (max-width: 650px) {
-
   }
 
   @media (max-width: 500px) {
     .render-html {
-      .code-toolbar pre[class*=language-] {
-        font-size: .8rem;
+      .code-toolbar pre[class*="language-"] {
+        font-size: 0.8rem;
       }
     }
   }
 
   @media (max-width: 375px) {
-
   }
 }
-

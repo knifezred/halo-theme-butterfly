@@ -493,6 +493,44 @@ spec:
           help: 请填写 自定义标题
           validation: required
 
+    - group: photos
+      label: 图库
+      formSchema:
+        - $formkit: radio
+          name: enable_above
+          label: 启用第一屏
+          help: 启用首页第一屏
+          value: true
+          options:
+            - label: 启用
+              value: true
+            - label: 禁用
+              value: false
+        - $formkit: attachment
+          name: above_background
+          label: 第一屏背景图
+          placeholder: 请填写 第一屏背景图
+          value: "https://fastly.jsdelivr.net/npm/halo-theme-butterfly@latest/above.png"
+          help: 如果全局背景图设置为图片链接，则此处背景图将不生效
+          validation: required
+        - $formkit: text
+          name: custom_title
+          label: 自定义标题
+          placeholder: 请填写 自定义标题
+          value: 追剧记录
+          help: 请填写 自定义标题
+          validation: required
+        - $formkit: radio
+          name: enable_tag
+          label: 启用图片标签
+          help: 启用图片标签
+          value: true
+          options:
+            - label: 启用
+              value: true
+            - label: 禁用
+              value: false
+
     - group: single
       label: 独立页
       formSchema:
@@ -794,4 +832,10 @@ spec:
           placeholder: 请填写 cdn地址，外链地址
           value: "https://cdn.jsdelivr.net/npm/halo-theme-butterfly/templates/assets"
           help: "默认为npmJs的jsdelivr加速地址，如果你有自己的cdn地址（请确保链接下assets文件夹下主题静态资源文件），可以填写，否则请勿修改！ jsdelivr地址：https://cdn.jsdelivr.net/npm/halo-theme-butterfly/templates/assets"
+          validation: required
+        - $formkit: text
+          name: statisticId
+          label: 51La统计ID
+          placeholder: 请填写51La统计ID
+          value:
           validation: required

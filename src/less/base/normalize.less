@@ -1,5 +1,5 @@
 /**
- * @Description: 
+ * @Description:
  * @author: 小红
  * @date: 2022/12/7
  * @fileName: normalize
@@ -15,26 +15,30 @@
   cursor: inherit;
 }
 
-input[type=text] {
+input[type="text"] {
+  appearance: none;
   -webkit-appearance: none;
   border-radius: 0;
-  font-weight: 500
+  font-weight: 500;
 }
 
 iframe {
   display: block;
   border: 0;
-  margin: 0 auto
+  margin: 0 auto;
 }
 
 textarea {
   font-size: 14px;
   resize: none;
-  -webkit-appearance: none
+  appearance: none;
+  -webkit-appearance: none;
 }
 
-li, ol, ul {
-  list-style: none
+li,
+ol,
+ul {
+  list-style: none;
 }
 
 a {
@@ -45,7 +49,12 @@ a {
   cursor: var(--cursor-pointer);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   position: relative;
   margin: 20px 0 14px;
   font-weight: 700;
@@ -84,12 +93,13 @@ img {
   border: 0;
   vertical-align: middle;
   max-width: 100%;
-  transition: filter 375ms ease-in .2s, transform .6s;
+  transition: filter 375ms ease-in 0.2s, transform 0.6s;
 }
 
-img:not([src]), img[src=""] {
+img:not([src]),
+img[src=""] {
   border: 0;
-  opacity: 0
+  opacity: 0;
 }
 
 //
@@ -106,8 +116,8 @@ img:not([src]), img[src=""] {
 //  overflow: hidden;
 //}
 
-
 button {
+  appearance: none;
   -webkit-appearance: none;
   outline: 0;
   border: 0;
@@ -117,7 +127,7 @@ button {
 
 table {
   border-collapse: collapse;
-  border-spacing: 0
+  border-spacing: 0;
 }
 
 i {

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html
+    xmlns:th="https://www.thymeleaf.org"
+    th:replace="~{modules/layout :: layout (
+  page = '404',
+  title = '404-页面不存在',
+  head = ~{::head},
+  above = ~{::above},
+  content = ~{::content},
+  js = ~{::js}
+  )}">
+>
+<th:block th:fragment="head">
+  <style th:inline="css"
+    th:with="above_background= ${is_body_bg_http ? '' : 'url(' + theme.config.singlePage.above_background + ')'}">
+    .above {
+      --above-background: /*[(${above_background})]*/ transparent;
+    }
+  </style>
+</th:block>
+
+<section
+  th:fragment="above"
+  th:if="${theme.config.singlePage.enable_above}"
+  class="above relative w-100">
+  <h1 class="absolute above-public-title font-weight-400 margin-0 left-0 right-0 text-center">404-页面不存在</h1>
+</section>
+
+<th:block th:fragment="content">
+    <section class="container card">
+        <div
+            th:style="'background-image: url(/upload/404.png);background-size: contain;min-height: 600px;width: 100%;background-repeat: no-repeat;background-position: center;'">
+        </div>
+        <a class="button btn-effect block text-center" style="margin: 2rem;" href="/"
+            data-pjax-state=""><i class="solar solar--exit-linear"></i>回到主页</a>
+    </section>
+
+    <th:block th:replace="~{modules/public:: aside}"></th:block>
+</th:block>
+
+<th:block th:fragment="js">
+    <script type="text/javascript" th:src="${assets_link+'/js/single.min.js' + theme_version}"></script>
+</th:block>
+
+</html>

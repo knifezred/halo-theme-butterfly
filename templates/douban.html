@@ -3,7 +3,7 @@
   xmlns:th="https://www.thymeleaf.org"
   th:replace="~{modules/layout :: layout (
   page = 'douban',
-  title = ${theme.config.douban.custom_title},
+  title = ${theme.config.douban.custom_title+ ' | ' + site.title},
   head = ~{::head},
   above = ~{::above},
   content = ~{::content},
@@ -14,9 +14,27 @@
   <style th:inline="css"
     th:with="above_background= ${is_body_bg_http ? '' : 'url(' + theme.config.douban.above_background + ')'}">
     .above {
-      --above-background:
-      /*[(${above_background})]*/
-      transparent;
+      --above-background: /*[(${above_background})]*/ transparent;
+    }
+
+    html,
+    html[data-theme=auto],
+    html[data-theme=light] {
+      --db-main-color: var(--theme) !important;
+      --db--text-color: var(--font-color) !important;
+      --db--text-color-light: var(--font-color) !important;
+      --db-hover-color: var(--theme-75-color) !important;
+      --db-border-color: var(--theme-50-color) !important;
+      --db--background-gray: var(--theme-20-color) !important;
+    }
+
+    html[data-theme=dark] {
+      --db-main-color: var(--theme);
+      --db--text-color: var(--font-color);
+      --db--text-color-light: var(--font-color);
+      --db-hover-color: var(--theme-75-color);
+      --db-border-color: var(--theme-50-color);
+      --db--background-gray: var(--theme-50-color);
     }
   </style>
   <link rel="stylesheet" th:href="@{/plugins/plugin-douban/assets/static/db.min.css}">

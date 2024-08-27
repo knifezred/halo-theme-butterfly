@@ -16,23 +16,20 @@
     th:with="above_background= ${is_body_bg_http ? '' : 'url(' + (#strings.isEmpty(post.spec.cover) ? random_img + '?date=' + #dates.createNow().getTime() : post.spec.cover) + ')'}
   ">
     .above {
-      --above-background:
-      /*[(${above_background})]*/
-      transparent;
+      --above-background: /*[(${above_background})]*/ transparent;
     }
   </style>
   <th:block th:if="${theme.config.code.enable}">
     <link rel="preload" as="style" onload="this.rel='stylesheet'"
-      th:href="${assets_link+'/plugins/prism/prism.min.css'}">
+          th:href="${assets_link+'/plugins/prism/prism.min.css'}">
     <link rel="preload" as="style" onload="this.rel='stylesheet'"
-      data-code-theme="light"
-      th:href="${assets_link+ '/plugins/prism/themes/prism-'+theme.config.code.theme_light+'.css'}">
+          data-code-theme="light"
+          th:href="${assets_link+ '/plugins/prism/themes/prism-'+theme.config.code.theme_light+'.css'}">
     <link rel="preload" as="style" onload="this.rel='stylesheet'"
-      data-code-theme="dark"
-      th:href="${assets_link+'/plugins/prism/themes/prism-'+theme.config.code.theme_dark+'.css'}">
+          data-code-theme="dark"
+          th:href="${assets_link+'/plugins/prism/themes/prism-'+theme.config.code.theme_dark+'.css'}">
     <script type="text/javascript" th:src="${assets_link+'/plugins/prism/prism.min.js'}"></script>
   </th:block>
-  <link rel="stylesheet" as="style" th:href="${assets_link+'/plugins/fancybox/fancybox.min.css'}">
   <link rel="stylesheet" as="style" th:href="${assets_link+'/css/post.min.css' + theme_version}">
 
   <script id="post-script" th:inline="javascript">
@@ -51,27 +48,27 @@
       <div class="line">
         <span class="wp publishTime">
           <i class="icon-pack solar--calendar-date-linear"></i>
-          <time th:text="'发布于 '+${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></time>
+            <time th:text="'发布于 '+${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></time>
         </span>
 
         <!--/* todo  需要添加更新时间-->
         <span class="wp publishTime">
-          <span class="fk">|</span>
+            <span class="fk">|</span>
           <i class="icon-pack solar--history-2-linear"></i>
-          <time th:text="'更新于 '+${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></time>
+            <time th:text="'更新于 '+${#dates.format(post.spec.publishTime, 'yyyy-MM-dd')}"></time>
         </span>
         <!--*/-->
 
         <span class="wp category">
-          <span class="fk">|</span>
+            <span class="fk">|</span>
           <i class="icon-pack solar--inbox-linear"></i>
-          <span class="cys">
-            <th:block th:each="cy : ${post.categories}">
-              <a class="lk" th:href="${cy.status.permalink}" th:text="${cy.spec.displayName}"></a>
-              <span class="point">•</span>
-            </th:block>
+            <span class="cys">
+              <th:block th:each="cy : ${post.categories}">
+                <a class="lk" th:href="${cy.status.permalink}" th:text="${cy.spec.displayName}"></a>
+               <span class="point">•</span>
+              </th:block>
+            </span>
           </span>
-        </span>
 
       </div>
       <div class="line" th:with="leg = ${#strings.length(#strings.trim(post.content.content))}">
@@ -103,36 +100,35 @@
   <section class="container card ">
     <!--/* todo  publishTime 此时间需要改为更新时间--><!--*/-->
     <div class="post-outDate relative none animated fadeIn"
-      th:data-outDate="${theme.config.post.out_date}"
-      th:data-publishTime="${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}">
+         th:data-outDate="${theme.config.post.out_date}"
+         th:data-publishTime="${#dates.format(post.spec.publishTime,'yyyy-MM-dd')}">
     </div>
 
     <article th:utext="${post.content.content}"
-      th:class="'render-html  single_code_select' + ${ theme.config.code.enable_line ? ' line-numbers' : ''} + ${ !theme.config.post.enable_h_title ? ' enable_h_title' : ''} ">
-    </article>
+             th:class="'render-html  single_code_select' + ${ theme.config.code.enable_line ? ' line-numbers' : ''} + ${ !theme.config.post.enable_h_title ? ' enable_h_title' : ''} "></article>
     <div class="post-copyRight relative">
       <div class="author">
         <i class="icon-pack solar--copyright-linear"></i>
         <span class="name">文章作者：</span>
         <span class="text"
-          th:text="${post.owner.displayName}"></span>
+              th:text="${post.owner.displayName}"></span>
       </div>
 
       <div class="url">
         <span class="name">本文链接：</span>
         <span class="text">
-          <a class="permalink" href="/" th:href="${post.status.permalink}" target="_blank"
-            th:text="${post.status.permalink}"></a>
-        </span>
+              <a class="permalink" href="/" th:href="${post.status.permalink}" target="_blank"
+                 th:text="${post.status.permalink}"></a>
+            </span>
       </div>
 
       <div class="declaration">
         <span class="name">版权声明：</span>
         <span class="text">本站所有文章除特别声明外，均采用 <a
-            class="link"
-            href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
-            target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自
-          <a class="link" href="/" target="_blank" th:text="${site.title}"></a>！</span>
+          class="link"
+          href="https://creativecommons.org/licenses/by-nc-sa/4.0/"
+          target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 
+              <a class="link" href="/" target="_blank" th:text="${site.title}"></a>！</span>
       </div>
 
 
@@ -140,22 +136,24 @@
 
     <div class="post-abstract">
       <span class="categories">
-        <a th:each=" cts : ${post.categories}"
-          class="link inline-block text-center"
-          th:href="${cts.status.permalink}">
+            <a th:each=" cts : ${post.categories}"
+               class="link inline-block text-center"
+               th:href="${cts.status.permalink}"
+            >
           <i class="icon-pack solar--folder-with-files-linear"></i>
-          <span th:text="${cts.spec.displayName}" class="name"></span>
-        </a>
-      </span>
+              <span th:text="${cts.spec.displayName}" class="name"></span>
+            </a>
+          </span>
       <span class="tags">
-        <a th:each=" tag : ${post.tags}"
-          class="link inline-block text-center"
-          th:href="${tag.status.permalink}"
-          th:style="'--spec-color: ' + ${tag.spec.color}">
+            <a th:each=" tag : ${post.tags}"
+               class="link inline-block text-center"
+               th:href="${tag.status.permalink}"
+               th:style="'--spec-color: var(--theme)'"
+            >
           <i class="icon-pack solar--tag-horizontal-linear"></i>
-          <span th:text="${tag.spec.displayName}" class="name"></span>
-        </a>
-      </span>
+              <span th:text="${tag.spec.displayName}" class="name"></span>
+            </a>
+          </span>
     </div>
 
     <div class="post-support">
@@ -174,7 +172,7 @@
         <div
           th:if="${theme.config.post.enable_reward && (not #strings.isEmpty(theme.config.post.wxPay) || not #strings.isEmpty(theme.config.post.alipay))}"
           class="reward relative item cursor-pointer inline-flex flex-direction-column flex-justify-content-center  flex-align-items-center">
-          <i class="icon-pack solar--wallet-money-linear"></i>
+           <i class="icon-pack solar--wallet-money-linear"></i>
           <span>打赏</span>
 
           <div class="reward-dropdown absolute z-50 flex">
@@ -200,8 +198,8 @@
     </div>
 
     <div class="post-comment" th:if="${pluginFinder.available('PluginCommentWidget')}">
-      <halo:comment colorScheme="window.dataTheme" group="content.halo.run" kind="Post"
-        th:attr="name=${post.metadata.name}" />
+      <halo:comment group="content.halo.run" kind="Post"
+                    th:attr="name=${post.metadata.name}"/>
     </div>
   </section>
   <aside class="aside w-25">
@@ -220,7 +218,6 @@
 </th:block>
 
 <th:block th:fragment="js">
-  <script type="text/javascript" th:src="${assets_link+'/plugins/fancybox/fancybox.min.js'}"></script>
   <script type="text/javascript" th:src="${assets_link+'/plugins/clipboard/clipboard.min.js'}"></script>
   <script type="text/javascript" th:src="${assets_link+'/plugins/tocbot/tocbot.min.js'}"></script>
   <script type="text/javascript" th:src="${assets_link+'/js/post.min.js' + theme_version}"></script>

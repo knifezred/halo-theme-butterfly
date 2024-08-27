@@ -12,7 +12,6 @@ spec:
       label: "图标"
 
 ---
-
 apiVersion: v1alpha1
 kind: AnnotationSetting
 metadata:
@@ -32,4 +31,58 @@ spec:
           value: "true"
         - label: 禁用
           value: "false"
-      
+
+---
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+  generateName: annotation-setting-
+spec:
+  targetRef:
+    group: core.halo.run
+    kind: PhotoGroup
+  formSchema:
+    - $formkit: "attachment"
+      name: "cover"
+      label: "分组图片"
+    - $formkit: "attachment"
+      name: "background"
+      label: "分组顶部 banner 图片"
+    - $formkit: "textarea"
+      name: "description"
+      label: "分组描述"
+
+---
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+  generateName: annotation-setting-
+spec:
+  targetRef:
+    group: core.halo.run
+    kind: EquipmentGroup
+  formSchema:
+    - $formkit: "textarea"
+      name: "description"
+      label: "分组描述"
+
+---
+apiVersion: v1alpha1
+kind: AnnotationSetting
+metadata:
+  generateName: annotation-setting-
+spec:
+  targetRef:
+    group: core.halo.run
+    kind: Equipment
+  formSchema:
+    - $formkit: "text"
+      name: "model"
+      label: "装备型号/版本"
+    - $formkit: "text"
+      name: "button"
+      label: "左下角按钮显示文字"
+      value: "详情"
+    - $formkit: "text"
+      name: "link"
+      label: "左下角按钮跳转链接"

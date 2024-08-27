@@ -100,13 +100,13 @@
           <!--/* 搜索 需要配合官方搜索插件使用 --><!--*/-->
           <li class="menu-item search" th:if="${pluginFinder.available('PluginSearchWidget')}">
             <a class="menu-link relative inline-block" href="javascript:SearchWidget.open();">
-              <i class="icon-pack solar--card-search-linear icon-large"></i>
+              <i class="icon-pack material-symbols--screen-search-desktop icon-large"></i>
               <span class="menu-name">搜索</span>
             </a>
           </li>
           <li class="menu-item toggle">
             <span class="menu-link relative inline-block">
-              <i class="icon-pack solar--hamburger-menu-linear icon-large"></i>
+              <i class="icon-pack solar--hamburger-menu-bold icon-large"></i>
             </span>
           </li>
           <!--/* toggle--><!--*/-->
@@ -118,7 +118,7 @@
                 <i th:if="${!#strings.isEmpty(#annotations.getOrDefault(menuItem, 'icon', ''))}"
                   th:class="${#annotations.getOrDefault(menuItem, 'icon', '')}"></i>
                 <span class="menu-name" th:text="${menuItem.status.displayName}"> </span>
-              </a>
+              </a>5
             </li>
 
             <li th:unless="${#lists.isEmpty(menuItem.children)}" class="menu-item menu-pc relative">
@@ -186,7 +186,7 @@
                 <i th:if="${!#strings.isEmpty(#annotations.getOrDefault(menuItem, 'icon', ''))}"
                   th:class="${#annotations.getOrDefault(menuItem, 'icon', '')}"></i>
                 <span class="menu-name" th:text="${menuItem.status.displayName}"></span>
-                <i class="icon-pack solar--alt-arrow-down-linear icon-large absolute"></i>
+                <i class="icon-pack solar--alt-arrow-down-linear icon-large"></i>
               </div>
               <ul class="menu-child none">
                 <li th:each="dropdown : ${menuItem.children}" class="menu-child--item">

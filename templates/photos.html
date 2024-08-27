@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html
+  xmlns:th="https://www.thymeleaf.org"
+  th:replace="~{modules/layout :: layout (
+  page = 'photos',
+  title = ${theme.config.photos.custom_title+ ' | ' + site.title},
+  head = ~{::head},
+  above = ~{::above},
+  content = ~{::content},
+  js = ~{::js}
+  )}">
+>
+<th:block th:fragment="head">
+  <style th:inline="css"
+    th:with="above_background= ${is_body_bg_http ? '' : 'url(' + theme.config.photos.above_background + ')'}">
+    .above {
+      --above-background: /*[(${above_background})]*/ transparent;
+    }
+  </style>
+  <link href="https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2.1/dist/fjGallery.css" rel="stylesheet">
+  <link rel="stylesheet" th:href="${assets_link+'/css/photos.min.css' + theme_version}">
+</th:block>
+
+<section
+  th:fragment="above"
+  th:if="${theme.config.photos.enable_above}"
+  class="above relative w-100">
+  <h1 class="absolute above-public-title font-weight-400 margin-0 left-0 right-0 text-center"
+    th:text="${theme.config.photos.custom_title}"></h1>
+</section>
+
+<th:block th:fragment="content">
+  <section class="container card" th:with="photoList=${photoFinder.listBy(param.group)}">
+    <th:block th:if="${#lists.isEmpty(photoList)}">
+      <div id="album" class="photos-group">
+        <div class="card-album">
+          <th:block th:each="group : ${photoFinder.groupBy()}">
+            <a class="card" th:href="|/photos?group=${group.metadata.name}|">
+              <img class="card_cover" th:src="${#annotations.get(group, 'cover')}">
+              <div class="card__content">
+                <h3 class="card__heading" th:text="${group.spec.displayName}"></h3>
+                <p class="card__category" th:text="${#annotations.get(group, 'description')}"></p>
+              </div>
+            </a>
+          </th:block>
+        </div>
+      </div>
+    </th:block>
+    <th:block th:unless="${#lists.isEmpty(photoList)}">
+      <div class="photos-group">
+        <a th:each="group : ${photoFinder.groupBy()}" class="link inline-block text-center"
+          th:href="|/photos?group=${group.metadata.name}|">
+          <span th:text="${group.spec.displayName}"
+            th:class="${#lists.contains(param.group, group.metadata.name) ? 'active' : ''}"></span>
+        </a>
+      </div>
+
+      <div id="photo-container">
+        <div class="type-gallery">
+          <div class="gallery" id="fj-gallery">
+            <div class="fj-gallery-item" th:each="photo : ${photoList}">
+              <img th:src="${photo.spec.url}" th:alt="${photo.spec.description}"
+                th:title="${photo.spec.description}">
+              <div th:if="${theme.config.photos.enable_tag}" class="tag-address">
+                [[${photo.spec.displayName}]]</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </th:block>
+  </section>
+
+  <th:block th:replace="~{modules/public:: aside}"></th:block>
+</th:block>
+
+<th:block th:fragment="js">
+  <script type="text/javascript" th:src="${assets_link+'/js/single.min.js' + theme_version}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flickr-justified-gallery@2.1/dist/fjGallery.min.js"></script>
+  <script type="text/javascript">
+    $(function () {
+      fjGallery($('#fj-gallery'), {
+        itemSelector: ".fj-gallery-item",
+        rowHeight: 240,
+        gutter: 4,
+        onJustify: function () {
+          this.$container.style.opacity = "1"
+        }
+      })
+    })
+  </script>
+</th:block>
+
+</html>
