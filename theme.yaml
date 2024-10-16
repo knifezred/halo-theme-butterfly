@@ -5,13 +5,13 @@ metadata:
 spec:
   displayName: Butterfly
   author:
-    name: 小红&KnifeZ
-    website: "https://www.omg.cn"
+    name: 小红 & KnifeZ
+    website: "https://www.omgx.cn"
   description: "一个Halo博客主题，Butterfly 🦋"
   logo: "https://halo.run/logo"
-  website: "https://www.omg.cn"
-  repo: "https://github.com/knifezred/halo-theme-butterfly.git"
+  website: "https://www.omgx.cn"
+  repo: "https://github.com/knifezred/halo-theme-butterfly"
   settingName: theme-butterfly-setting
   configMapName: theme-butterfly-configMap
-  version: 2.0.10
-  require: 2.19.0
+  version: 2.0.71
+  require: 2.0.0
