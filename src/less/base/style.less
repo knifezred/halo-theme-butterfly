@@ -161,13 +161,14 @@ body {
   .nav {
     user-select: none;
     height: 60px;
-    padding: 0 42rem;
+    padding: 0 2rem;
     animation: nav-down 1.2s;
     font-size: 1.1rem;
     //top: 0;
     //transform: translateY(0);
     transform: translateY(0);
     transition: background 0.5s, transform 0.5s;
+    justify-content: center;
 
     .site-title {
       text-shadow: 0.1rem 0.1rem 0.2rem rgb(0 0 0 / 15%);
@@ -342,13 +343,13 @@ body {
       font-size: 2.2rem;
       line-height: 1.5;
       padding: 0 8%;
-      bottom: 8rem;
+      bottom: 16rem;
       transition: bottom 0.3s, padding 0.3s, font-size 0.3s;
     }
   }
 
   .sidebar {
-    background: linear-gradient(60deg, #ffd2e1 0, #b1ebff 93%);
+    background: var(--body-bg);
     border-radius: 10px 0 0 10px;
 
     right: -300px;

@@ -36,41 +36,23 @@
     type="text/css"
     th:with="body_bg= ${is_body_bg_http ? 'url('+theme.config.style.body_background+') no-repeat fixed center / cover;' : theme.config.style.body_background}">
     html {
-      --theme:
-      /*[(${theme.config.style.theme_color_light})]*/
-      #49b1f5;
-      --body-bg:
-      /*[(${body_bg})]*/
-      transparent;
-      --main-max-width:
-      /*[(${theme.config.style.content_max_width})]*/
-      1200px;
-      --card-border-radius:
-      /*[(${theme.config.card.radius})]*/
-      24px;
-      --card-bg-color:
-      /*[(${theme.config.card.bg_color})]*/
-      transparent;
-      --card-box-shadow:
-      /*[(${theme.config.card.shadow})]*/
-      transparent;
-      --cursor-default: url("[(${assets_link+'/plugins/cursor/simple/default.cur'})]"),
-      auto;
-      --cursor-pointer: url("[(${assets_link+'/plugins/cursor/simple/pointer.cur'})]"),
-      auto;
+      --theme: /*[(${theme.config.style.theme_color_light})]*/ #49b1f5;
+      --body-bg: /*[(${body_bg})]*/ transparent;
+      --main-max-width: /*[(${theme.config.style.content_max_width})]*/ 1200px;
+      --card-border-radius: /*[(${theme.config.card.radius})]*/ 24px;
+      --card-bg-color: /*[(${theme.config.card.bg_color})]*/ transparent;
+      --card-box-shadow: /*[(${theme.config.card.shadow})]*/ transparent;
+      --cursor-default: url("[(${assets_link+'/plugins/cursor/simple/default.cur'})]"), auto;
+      --cursor-pointer: url("[(${assets_link+'/plugins/cursor/simple/pointer.cur'})]"), auto;
     }
 
     html[data-theme=dark] {
-      --theme:
-      /*[(${theme.config.style.theme_color_dark})]*/
-      #ff7242;
+      --theme: /*[(${theme.config.style.theme_color_dark})]*/ #ff7242;
       --body-bg: #221f1f;
     }
 
     img[data-lazy-src]:not(.loaded, .error) {
-      filter:
-      /*[(${theme.config.loading.filter})]*/
-      none;
+      filter: /*[(${theme.config.loading.filter})]*/ none;
     }
   </style>
   <th:block th:if="${theme.config.style.font_family != 'no'}">
@@ -82,6 +64,8 @@
   <link rel="preload" as="style" onload="this.rel='stylesheet'"
     th:href="${assets_link+'/css/icon.min.css' + theme_version}">
   <link rel="preload" as="style" onload="this.rel='stylesheet'"
+      th:href="${assets_link+'/plugins/nprogress/nprogress.min.css' + theme_version}">
+  <link rel="preload" as="style" onload="this.rel='stylesheet'"
     th:href="${assets_link+'/plugins/animate/animate.min.css'}">
   <th:block th:insert="${head}"></th:block>
   <link rel="stylesheet" th:href="${assets_link+'/plugins/Qmsg/Qmsg.min.css'}">
@@ -91,13 +75,12 @@
   <div id="Butterfly" th:class="${page}"
     th:with="stats = ${siteStatsFinder.getStats()},contributor = ${contributorFinder.getContributor(theme.config.base.metadata_name)}
 ">
-    <!--/* 头部--><!--*/-->
     <header class="header relative w-100">
       <nav class="nav flex flex-wrap flex-align-items-center  top-0 absolute z-80 w-100">
         <a th:text="${site.title}" class="site-title flex-1" href="/"></a>
 
         <ul class="menu inline">
-          <!--/* 搜索 需要配合官方搜索插件使用 --><!--*/-->
+          <!-- 搜索 需要配合官方搜索插件使用 -->
           <li class="menu-item search" th:if="${pluginFinder.available('PluginSearchWidget')}">
             <a class="menu-link relative inline-block" href="javascript:SearchWidget.open();">
               <i class="icon-pack material-symbols--screen-search-desktop icon-large"></i>
@@ -258,12 +241,15 @@
     <div class="global-mask fixed w-100 z-100 h-100 left-0 top-0 none"></div>
   </div>
   <script type="text/javascript" th:src="${assets_link+'/plugins/jquery/jquery.min.js'}"></script>
+  <script type="text/javascript" th:src="${assets_link+'/plugins/nprogress/nprogress.min.js'}"></script>
   <script type="text/javascript" th:src="${assets_link+'/plugins/lazyLoad/lazyLoad.min.js'}"></script>
   <script type="text/javascript" th:src="${assets_link+'/plugins/universe/universe.min.js'}"></script>
   <script type="text/javascript" th:src="${assets_link+'/plugins/Qmsg/Qmsg.min.js'}"></script>
   <script type="text/javascript" th:src="${assets_link+'/js/global.min.js'+theme_version}"></script>
+  <script>
+    $(document).on('pjax:start', NProgress.start).on('pjax:end', NProgress.done);
+  </script>
   <th:block th:insert="${js}" />
-  <script type="text/javascript" th:src="${assets_link+'/plugins/busuanzi/busuanzi.pure.mini.js'}"></script>
 </body>
 
 </html>
